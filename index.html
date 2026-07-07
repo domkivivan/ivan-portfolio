@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ivan — Web Developer &amp; Creative Director</title>
+  <meta name="description" content="Custom sites, web apps and Telegram Mini Apps for small, ambitious businesses. Design, code and deploy — by one person, fast." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Fraunces:opsz,wght@9..144,400..600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #F5F0E6;
+      --bg2:       #ECE5D6;
+      --surface:   #FBF8F1;
+      --ink:       #17140F;
+      --ink2:      #3A362C;
+      --muted:     #6E6858;
+      --faint:     #A69E8A;
+      --line:      rgba(23,20,15,.13);
+      --line-strong: rgba(23,20,15,.24);
+      --accent:    #FF4B2E;
+      --accent-text: #B4341C;
+      --radius:    16px;
+      --radius-sm: 10px;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg); color: var(--ink);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-weight: 400; line-height: 1.6; overflow-x: hidden; position: relative;
+    }
+    body::before {
+      content: ''; position: fixed; inset: 0; z-index: 999; pointer-events: none;
+      opacity: .05; mix-blend-mode: multiply;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    h1, h2, h3, .disp { font-family: 'Bricolage Grotesque', sans-serif; letter-spacing: -0.01em; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 32px;
+      display: flex; justify-content: space-between; align-items: center; height: 68px;
+      background: rgba(245,240,230,.82); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      border-bottom: 0.5px solid var(--line);
+    }
+    .nav-logo { font-family: 'Bricolage Grotesque', sans-serif; font-size: 1.35rem; font-weight: 700; color: var(--ink); text-decoration: none; }
+    .nav-right { display: flex; align-items: center; gap: 28px; }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a { color: var(--ink2); text-decoration: none; font-size: 0.86rem; font-weight: 500; }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-avail {
+      display: flex; align-items: center; gap: 7px; font-size: 0.78rem; color: var(--muted); font-weight: 500;
+      border: 0.5px solid var(--line-strong); border-radius: 20px; padding: 5px 12px 5px 9px; text-decoration: none;
+    }
+    .dot { width: 6px; height: 6px; border-radius: 50%; background: #2E9B5A; flex-shrink: 0; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.35} }
+    @media (max-width: 760px) { .nav-links { display: none; } nav { padding: 0 20px; } }
+
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 32px; position: relative; z-index: 1; }
+    section { padding: 110px 0; position: relative; }
+    @media (max-width: 640px) { section { padding: 68px 0; } .container { padding: 0 20px; } }
+
+    .sec-label { color: var(--accent-text); font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 14px; display: block; font-weight: 600; }
+
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: 100px; font-family: 'Inter', sans-serif; font-size: 0.9rem; font-weight: 600; text-decoration: none; cursor: pointer; border: none; will-change: transform; }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-primary:hover { background: #E8401F; }
+    .btn-ghost { background: transparent; border: 1px solid var(--line-strong); color: var(--ink); }
+    .btn-ghost:hover { border-color: var(--ink); }
+
+    /* ═══ HERO ═══ */
+    #hero { min-height: 92vh; display: flex; align-items: center; padding-top: 68px; }
+    .hero-eyebrow { display: inline-flex; align-items: center; gap: 10px; font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 26px; }
+    .hero-title { font-size: clamp(2.6rem, 6.4vw, 5.2rem); font-weight: 700; line-height: 1.04; letter-spacing: -0.02em; max-width: 900px; margin-bottom: 28px; }
+    .hero-title .hl { color: var(--accent-text); font-style: italic; font-weight: 500; font-family: 'Fraunces', serif; }
+    .hero-desc { color: var(--ink2); font-size: 1.15rem; line-height: 1.65; max-width: 560px; margin-bottom: 36px; }
+    .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 56px; }
+    .hero-proof { display: flex; align-items: center; gap: 16px; border-top: 0.5px solid var(--line); padding-top: 22px; max-width: 620px; }
+    .hero-proof .tag { font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: var(--accent-text); font-weight: 700; background: rgba(255,75,46,.1); padding: 4px 10px; border-radius: 20px; flex-shrink: 0; }
+    .hero-proof p { font-size: 0.86rem; color: var(--muted); }
+    .hero-proof a { color: var(--ink); font-weight: 600; text-decoration: none; border-bottom: 1px solid var(--line-strong); }
+    .hero-proof a:hover { border-color: var(--ink); }
+
+    /* ═══ EDGE ═══ */
+    #edge { background: var(--ink); color: var(--bg); padding: 56px 0; }
+    .edge-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    @media (max-width: 720px) { .edge-row { grid-template-columns: 1fr; gap: 32px; } }
+    .edge-item .num { font-family: 'Bricolage Grotesque', sans-serif; color: var(--accent); font-size: 0.8rem; font-weight: 700; margin-bottom: 8px; }
+    .edge-item h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 6px; color: var(--bg); }
+    .edge-item p { font-size: 0.86rem; color: #B7B2A2; line-height: 1.6; }
+
+    /* ═══ WORK ═══ */
+    #work { background: var(--bg); }
+    .section-head { margin-bottom: 64px; max-width: 640px; }
+    .section-head h2 { font-size: clamp(2rem, 4vw, 2.7rem); font-weight: 700; line-height: 1.12; }
+    .section-head p { color: var(--muted); margin-top: 14px; font-size: 1rem; }
+
+    .work-row { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; padding: 56px 0; border-top: 0.5px solid var(--line-strong); }
+    .work-row:first-of-type { border-top: none; padding-top: 0; }
+    .work-row.reverse .work-text { order: 2; }
+    .work-row.reverse .work-visual { order: 1; }
+    @media (max-width: 860px) {
+      .work-row, .work-row.reverse { grid-template-columns: 1fr; gap: 32px; padding: 44px 0; }
+      .work-row .work-text, .work-row .work-visual, .work-row.reverse .work-text, .work-row.reverse .work-visual { order: 0; }
+    }
+
+    .work-meta { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-bottom: 18px; }
+    .work-chip { font-size: 11px; padding: 5px 12px; border-radius: 20px; border: 0.5px solid var(--line-strong); color: var(--muted); font-weight: 500; }
+    .work-chip.live { border-color: rgba(46,155,90,.5); color: #2E7B4C; display: inline-flex; align-items: center; gap: 6px; }
+    .work-chip.live .dot { background: #2E9B5A; }
+    .work-chip.concept { border-color: var(--line-strong); color: var(--faint); }
+    .work-name { font-size: clamp(1.7rem, 3.4vw, 2.4rem); font-weight: 700; line-height: 1.05; margin-bottom: 14px; }
+    .work-desc { color: var(--ink2); font-size: 1rem; line-height: 1.7; margin-bottom: 22px; }
+    .work-features { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; }
+    .work-features li { display: flex; gap: 12px; font-size: 0.92rem; color: var(--ink2); line-height: 1.55; }
+    .feat-dot { flex-shrink: 0; width: 18px; height: 18px; margin-top: 2px; border-radius: 50%; background: var(--accent); color: #fff; font-size: 10px; display: flex; align-items: center; justify-content: center; font-weight: 700; }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag { font-size: 11px; padding: 5px 12px; background: var(--surface); border: 0.5px solid var(--line-strong); border-radius: 20px; color: var(--muted); }
+
+    /* ── generic browser frame ── */
+    .frame { border-radius: 14px; overflow: hidden; box-shadow: 0 24px 60px -24px rgba(23,20,15,.4); }
+    .frame-bar { height: 32px; display: flex; align-items: center; gap: 6px; padding: 0 12px; }
+    .frame-bar i { width: 9px; height: 9px; border-radius: 50%; opacity: .8; }
+    .frame-url { margin-left: 8px; font-size: 10px; font-family: 'Inter'; padding: 3px 12px; border-radius: 20px; }
+
+    /* ── phone frame ── */
+    .phone { max-width: 300px; margin: 0 auto; border-radius: 26px; padding: 12px; box-shadow: 0 30px 70px -28px rgba(23,20,15,.55); }
+    .phone-screen { border-radius: 16px; overflow: hidden; }
+    .phone-notch { display: flex; justify-content: center; padding: 7px 0 3px; }
+    .phone-notch i { width: 44px; height: 4px; border-radius: 4px; }
+
+    /* ── OASIS (dark + cognac) ── */
+    .o-wrap { background: #14110d; }
+    .o-screen { background: linear-gradient(140deg, #1e1a15, #14110d); }
+    .o-notch i { background: #33291d; }
+    .o-body { padding: 6px 16px 20px; color: #d8d0c0; }
+    .o-brand { text-align: center; font-family: 'Fraunces', serif; color: #c8a96e; font-size: 1rem; letter-spacing: .12em; margin-bottom: 14px; }
+    .o-hello { font-size: 15px; font-weight: 600; color: #f3efe6; }
+    .o-sub { font-size: 11px; color: #9a917d; margin-bottom: 14px; }
+    .o-card { background: linear-gradient(140deg, #241f17, #171310); border: 0.5px solid #33291d; border-radius: 12px; padding: 12px 14px; margin-bottom: 12px; }
+    .o-row { display: flex; justify-content: space-between; align-items: center; font-size: 10px; margin-bottom: 8px; color: #a99b7c; }
+    .o-pill { background: #c8a96e; color: #1a0e00; font-size: 9px; font-weight: 700; padding: 3px 9px; border-radius: 20px; }
+    .o-points { font-family: 'Fraunces', serif; color: #f3efe6; font-size: 24px; }
+    .o-bar { height: 4px; background: #33291d; border-radius: 4px; margin-top: 10px; overflow: hidden; }
+    .o-bar i { display: block; height: 100%; width: 82%; background: #c8a96e; }
+    .o-actions { display: flex; gap: 7px; margin-bottom: 12px; }
+    .o-actions span { flex: 1; text-align: center; font-size: 10px; color: #b7ac95; background: #201b15; border: 0.5px solid #33291d; border-radius: 8px; padding: 10px 2px; }
+    .o-chips { display: flex; gap: 7px; }
+    .o-chips span { font-size: 9px; color: #c8a96e; background: rgba(200,169,110,.12); border-radius: 6px; padding: 7px 9px; flex: 1; text-align: center; }
+
+    /* ── FIG & EMBER (warm restaurant, browser) ── */
+    .fe-frame { border: 1px solid #e0d2ba; }
+    .fe-frame .frame-bar { background: #e9dcc6; }
+    .fe-frame .frame-bar i { background: #c9b48f; }
+    .fe-frame .frame-url { background: #f3ebda; color: #8a7a5c; }
+    .fe-body { background: #F3EAD7; padding: 20px 22px 24px; }
+    .fe-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 22px; }
+    .fe-logo { font-family: 'Fraunces', serif; font-weight: 600; letter-spacing: .18em; font-size: 12px; color: #2A2118; }
+    .fe-nav-links { display: flex; gap: 14px; font-size: 10px; color: #6a5f49; }
+    .fe-hero { font-family: 'Fraunces', serif; font-size: 30px; line-height: 1.05; color: #2A2118; margin-bottom: 8px; }
+    .fe-hero em { color: #C05A2E; font-style: italic; }
+    .fe-sub { font-size: 11px; color: #6a5f49; margin-bottom: 18px; }
+    .fe-book { display: flex; gap: 6px; background: #fff; border: 1px solid #e0d2ba; border-radius: 10px; padding: 6px; margin-bottom: 20px; }
+    .fe-book div { flex: 1; text-align: center; font-size: 10px; color: #6a5f49; padding: 8px 2px; border-right: 1px solid #eee2cc; }
+    .fe-book div:last-child { border: none; background: #C05A2E; color: #fff; border-radius: 6px; font-weight: 600; }
+    .fe-dishes { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; }
+    .fe-dish { border-radius: 8px; height: 62px; display: flex; align-items: flex-end; padding: 8px; font-size: 9px; color: #fff; font-weight: 500; }
+
+    /* ── MERIDIAN ROASTERS (coffee, browser) ── */
+    .mr-frame { border: 1px solid #cdbfa6; }
+    .mr-frame .frame-bar { background: #143029; }
+    .mr-frame .frame-bar i { background: #35564d; }
+    .mr-frame .frame-url { background: #1c3d34; color: #9dbdb0; }
+    .mr-body { background: #F4EFE6; padding: 20px 22px 24px; }
+    .mr-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+    .mr-logo { font-family: 'Bricolage Grotesque'; font-weight: 700; letter-spacing: .12em; font-size: 12px; color: #14342B; }
+    .mr-nav-links { display: flex; gap: 14px; font-size: 10px; color: #5c6b60; }
+    .mr-hero { font-family: 'Bricolage Grotesque'; font-weight: 700; font-size: 22px; line-height: 1.05; color: #14342B; margin-bottom: 16px; }
+    .mr-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .mr-prod { background: #fff; border: 1px solid #e5dcc9; border-radius: 10px; padding: 10px; }
+    .mr-swatch { height: 54px; border-radius: 7px; margin-bottom: 9px; }
+    .mr-prod .n { font-size: 11px; font-weight: 600; color: #14342B; }
+    .mr-prod .t { font-size: 9px; color: #7a8a7d; margin-bottom: 7px; }
+    .mr-prod .foot { display: flex; justify-content: space-between; align-items: center; }
+    .mr-prod .p { font-size: 11px; font-weight: 700; color: #14342B; }
+    .mr-add { font-size: 9px; background: #E0662B; color: #fff; padding: 4px 9px; border-radius: 20px; font-weight: 600; }
+    .mr-sub { margin-top: 12px; text-align: center; font-size: 10px; color: #14342B; background: rgba(20,52,43,.08); border-radius: 20px; padding: 8px; font-weight: 500; }
+
+    /* ── STUDIO FORM (movement studio, phone) ── */
+    .sf-wrap { background: #1a1a1a; }
+    .sf-screen { background: #EFEDE8; }
+    .sf-notch i { background: #cfccc2; }
+    .sf-body { padding: 8px 16px 18px; }
+    .sf-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+    .sf-logo { font-family: 'Bricolage Grotesque'; font-weight: 700; font-size: 14px; color: #1A1A1A; letter-spacing: -0.01em; }
+    .sf-dot { width: 26px; height: 26px; border-radius: 50%; background: #DDE0D2; }
+    .sf-label { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: #8f8d84; margin: 16px 0 10px; font-weight: 600; }
+    .sf-class { display: flex; align-items: center; gap: 12px; background: #fff; border: 1px solid #e3e1d8; border-radius: 12px; padding: 12px; margin-bottom: 8px; }
+    .sf-time { font-family: 'Bricolage Grotesque'; font-weight: 700; font-size: 13px; color: #1A1A1A; width: 42px; flex-shrink: 0; }
+    .sf-info { flex: 1; }
+    .sf-info .n { font-size: 12px; font-weight: 600; color: #1A1A1A; }
+    .sf-info .s { font-size: 9.5px; color: #9b998f; }
+    .sf-book { font-size: 10px; background: #1A1A1A; color: #EFEDE8; padding: 6px 13px; border-radius: 20px; font-weight: 600; }
+    .sf-book.soft { background: #DDE0D2; color: #4a4d40; }
+
+    /* ═══ RATES ═══ */
+    #services { background: var(--bg2); }
+    .rate-list { border-top: 0.5px solid var(--line-strong); }
+    .rate-row { display: grid; grid-template-columns: 220px 1fr auto; gap: 24px; align-items: center; padding: 26px 0; border-bottom: 0.5px solid var(--line-strong); transition: background .2s; }
+    .rate-row:hover { background: rgba(255,75,46,.04); }
+    @media (max-width: 720px) { .rate-row { grid-template-columns: 1fr; gap: 8px; padding: 22px 0; } }
+    .rate-name { font-family: 'Bricolage Grotesque', sans-serif; font-size: 1.2rem; font-weight: 700; }
+    .rate-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.6; }
+    .rate-price { text-align: right; white-space: nowrap; }
+    @media (max-width: 720px) { .rate-price { text-align: left; } }
+    .rate-price b { font-family: 'Bricolage Grotesque', sans-serif; font-size: 1.15rem; color: var(--ink); }
+    .rate-price span { display: block; font-size: 0.78rem; color: var(--faint); margin-top: 2px; }
+    .rate-note { margin-top: 22px; font-size: 0.84rem; color: var(--faint); max-width: 640px; }
+
+    /* ═══ PROCESS ═══ */
+    #process { background: var(--bg); }
+    .process-list { border-top: 0.5px solid var(--line-strong); }
+    .process-row { display: grid; grid-template-columns: 90px 1fr; gap: 28px; padding: 36px 0; border-bottom: 0.5px solid var(--line-strong); }
+    @media (max-width: 640px) { .process-row { grid-template-columns: 50px 1fr; gap: 16px; padding: 28px 0; } }
+    .process-row .step-num { font-family: 'Bricolage Grotesque', sans-serif; font-size: 2.6rem; font-weight: 700; color: var(--accent); line-height: 1; }
+    .step-title { font-size: 1.15rem; font-weight: 700; margin-bottom: 8px; }
+    .step-desc { font-size: 0.94rem; color: var(--muted); line-height: 1.7; max-width: 560px; }
+
+    /* ═══ CONTACT ═══ */
+    #contact { background: var(--ink); color: var(--bg); text-align: center; }
+    .contact-title { font-size: clamp(2.4rem, 6vw, 4rem); font-weight: 700; line-height: 1.08; margin-bottom: 20px; max-width: 780px; margin-left: auto; margin-right: auto; }
+    .contact-title .hl { color: var(--accent); font-style: italic; font-weight: 500; font-family: 'Fraunces', serif; }
+    .contact-sub { color: #B7B2A2; font-size: 1.05rem; max-width: 480px; margin: 0 auto 44px; line-height: 1.7; }
+    .contact-links { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 32px; }
+    .contact-link { display: flex; align-items: center; gap: 10px; padding: 14px 26px; border-radius: 100px; background: rgba(245,240,230,.06); border: 0.5px solid rgba(245,240,230,.2); color: var(--bg); text-decoration: none; font-size: 0.92rem; font-weight: 600; }
+    .contact-link:hover { border-color: var(--accent); background: rgba(255,75,46,.12); }
+    .contact-langs { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #7A7566; font-weight: 500; }
+    .lang-divider { margin: 0 10px; opacity: .5; }
+
+    footer { background: var(--ink); border-top: 0.5px solid rgba(245,240,230,.1); padding: 26px 32px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .footer-logo { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; color: var(--bg); font-size: 1rem; }
+    .footer-copy { font-size: 0.75rem; color: #6E6858; }
+
+    /* ═══════════ MOTION LAYER ═══════════ */
+
+    nav { transition: box-shadow .3s ease, background .3s ease; }
+    nav.scrolled { box-shadow: 0 10px 34px -22px rgba(23,20,15,.5); background: rgba(245,240,230,.92); }
+
+    .btn { transition: background .2s ease, transform .12s ease; }
+    .btn:active { transform: scale(.97); }
+    .contact-link { transition: border-color .2s, background .2s, transform .18s ease; }
+    .contact-link:active { transform: scale(.97); }
+
+    /* hero ambient colour glow */
+    #hero { position: relative; overflow: hidden; }
+    .hero-glow {
+      position: absolute; inset: -25% -12%; z-index: 0; pointer-events: none;
+      filter: blur(64px); opacity: .6;
+      background:
+        radial-gradient(38% 40% at 22% 32%, rgba(255,75,46,.36), transparent 70%),
+        radial-gradient(34% 36% at 80% 26%, rgba(255,169,92,.32), transparent 70%),
+        radial-gradient(44% 46% at 62% 82%, rgba(214,120,150,.26), transparent 72%);
+      animation: gradientDrift 18s ease-in-out infinite alternate;
+    }
+    @keyframes gradientDrift {
+      0%   { transform: translate3d(0,0,0) scale(1); }
+      100% { transform: translate3d(-4%, 3%, 0) scale(1.16); }
+    }
+
+    /* hero entrance — pure CSS, no script dependency */
+    .hero-eyebrow { animation: rise .8s .04s both cubic-bezier(.22,1,.36,1); }
+    .hero-title   { animation: rise .85s .12s both cubic-bezier(.22,1,.36,1); }
+    .hero-desc    { animation: rise .85s .20s both cubic-bezier(.22,1,.36,1); }
+    .hero-cta     { animation: rise .85s .28s both cubic-bezier(.22,1,.36,1); }
+    .hero-proof   { animation: rise .85s .36s both cubic-bezier(.22,1,.36,1); }
+    @keyframes rise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+
+    /* marquee */
+    .marquee { background: var(--ink); color: var(--bg); overflow: hidden; padding: 20px 0; border-top: 0.5px solid rgba(245,240,230,.1); }
+    .marquee-track { display: inline-flex; align-items: center; gap: 34px; white-space: nowrap; animation: marquee 32s linear infinite; will-change: transform; }
+    .marquee-track span { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 1.05rem; color: var(--bg); }
+    .marquee-track .star { color: var(--accent); font-size: .9rem; }
+    .marquee:hover .marquee-track { animation-play-state: paused; }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* scroll reveal */
+    .reveal-init { opacity: 0; transform: translateY(26px); transition: opacity .75s cubic-bezier(.22,1,.36,1), transform .75s cubic-bezier(.22,1,.36,1); }
+    .reveal-init.reveal-in { opacity: 1; transform: none; }
+
+    /* mockup float + 3D tilt */
+    .work-visual { perspective: 1100px; }
+    .work-visual .phone, .work-visual .frame { transform-style: preserve-3d; will-change: transform; }
+    .float-anim { animation: floatY 6.5s ease-in-out infinite; }
+    @keyframes floatY { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+
+    /* rate row hover arrow */
+    .rate-name::after { content: '→'; margin-left: 10px; color: var(--accent); display: inline-block; opacity: 0; transform: translateX(-6px); transition: opacity .25s ease, transform .25s ease; }
+    .rate-row:hover .rate-name::after { opacity: 1; transform: translateX(0); }
+
+    /* work chips / tags lift */
+    .tag { transition: border-color .2s, color .2s, transform .2s ease; }
+    .tag:hover { border-color: var(--line-strong); color: var(--ink); transform: translateY(-2px); }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero-glow, .float-anim, .marquee-track,
+      .hero-eyebrow, .hero-title, .hero-desc, .hero-cta, .hero-proof { animation: none !important; }
+      .reveal-init { opacity: 1 !important; transform: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#hero">Ivan.</a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#work">Work</a></li>
+      <li><a href="#services">Rates</a></li>
+      <li><a href="#process">Process</a></li>
+    </ul>
+    <a href="#contact" class="nav-avail"><span class="dot"></span>Taking new projects</a>
+  </div>
+</nav>
+
+<section id="hero">
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="container">
+    <div class="hero-eyebrow">Web developer · Creative director · Netherlands</div>
+    <h1 class="hero-title">
+      Sites that make people<br>
+      want to <span class="hl">book</span>, not bounce.
+    </h1>
+    <p class="hero-desc">
+      I design and build custom sites for small, ambitious businesses — restaurants, lounges,
+      local brands. I research your niche first, commit to one strong direction, and ship a
+      working product in days, not months.
+    </p>
+    <div class="hero-cta">
+      <a href="#contact" class="btn btn-primary" id="magnet-btn">Start a project</a>
+      <a href="#work" class="btn btn-ghost">See the work</a>
+    </div>
+    <div class="hero-proof">
+      <span class="tag">Latest</span>
+      <p>A full Telegram Mini App for a premium hookah lounge — booking, loyalty, live staff panel.
+        <a href="#work">See it →</a></p>
+    </div>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Restaurants</span><span class="star">✦</span><span>Lounges</span><span class="star">✦</span><span>Coffee&nbsp;bars</span><span class="star">✦</span><span>Studios</span><span class="star">✦</span><span>Local&nbsp;brands</span><span class="star">✦</span><span>Telegram&nbsp;Mini&nbsp;Apps</span><span class="star">✦</span>
+    <span>Restaurants</span><span class="star">✦</span><span>Lounges</span><span class="star">✦</span><span>Coffee&nbsp;bars</span><span class="star">✦</span><span>Studios</span><span class="star">✦</span><span>Local&nbsp;brands</span><span class="star">✦</span><span>Telegram&nbsp;Mini&nbsp;Apps</span><span class="star">✦</span>
+  </div>
+</div>
+
+<section id="edge">
+  <div class="container">
+    <div class="edge-row">
+      <div class="edge-item">
+        <div class="num">01</div>
+        <h3>Days, not weeks</h3>
+        <p>First working version in days. No multi-week agency queue.</p>
+      </div>
+      <div class="edge-item">
+        <div class="num">02</div>
+        <h3>Built for your brand</h3>
+        <p>I research your niche and competitors before designing anything — never a reused template.</p>
+      </div>
+      <div class="edge-item">
+        <div class="num">03</div>
+        <h3>One person, start to finish</h3>
+        <p>Design, code and deployment — no handoffs, no telephone game between departments.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="container">
+    <div class="section-head">
+      <span class="sec-label">Selected work</span>
+      <h2>One live product — and concepts that show the range</h2>
+      <p>Every project gets its own direction. Four projects, four completely different looks — because I don't reuse one style.</p>
+    </div>
+
+    <!-- OASIS — real -->
+    <div class="work-row">
+      <div class="work-text">
+        <div class="work-meta">
+          <span class="work-chip live"><span class="dot"></span>Live · real guests</span>
+          <span class="work-chip">Telegram Mini App</span>
+          <span class="work-chip">Tbilisi, GE</span>
+        </div>
+        <h3 class="work-name">OASIS Lounge</h3>
+        <p class="work-desc">A complete digital product for a premium hookah bar — guest app, real-time staff panel, loyalty engine and booking, shipped as a single Telegram Mini App and running with real guests.</p>
+        <ul class="work-features">
+          <li><span class="feat-dot">✓</span>Table booking in 3 steps — interactive floor map, live slots, conflict protection</li>
+          <li><span class="feat-dot">✓</span>5-tier loyalty: Bronze → VIP, points catalogue, transaction history</li>
+          <li><span class="feat-dot">✓</span>Real-time guest–staff chat and a full staff control panel</li>
+        </ul>
+        <div class="tag-row">
+          <span class="tag">Vanilla JS</span><span class="tag">Telegram WebApp</span><span class="tag">Node + Express</span><span class="tag">PostgreSQL</span><span class="tag">Socket.IO</span><span class="tag">Docker</span>
+        </div>
+      </div>
+      <div class="work-visual">
+        <div class="phone o-wrap">
+          <div class="phone-screen o-screen">
+            <div class="phone-notch o-notch"><i></i></div>
+            <div class="o-body">
+              <div class="o-brand">OASIS</div>
+              <div class="o-hello">Привет, Гио</div>
+              <div class="o-sub">Рады видеть снова</div>
+              <div class="o-card">
+                <div class="o-row"><span>Карта лояльности</span><span class="o-pill">GOLD</span></div>
+                <div class="o-points">1 250 <span style="font-size:10px;color:#9a917d;">баллов</span></div>
+                <div class="o-bar"><i></i></div>
+              </div>
+              <div class="o-actions"><span>Бронь</span><span>Баллы</span><span>Написать</span></div>
+              <div class="o-chips"><span>Кальян −30%</span><span>4-й в подарок</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FIG & EMBER — concept -->
+    <div class="work-row reverse">
+      <div class="work-text">
+        <div class="work-meta">
+          <span class="work-chip concept">Concept</span>
+          <span class="work-chip">Restaurant landing</span>
+        </div>
+        <h3 class="work-name">Fig &amp; Ember</h3>
+        <p class="work-desc">A seasonal farm-to-table restaurant. One warm, editorial page built around a single job: turn a curious visitor into a reservation before they leave.</p>
+        <ul class="work-features">
+          <li><span class="feat-dot">✓</span>Reserve widget above the fold — date, party, time, done</li>
+          <li><span class="feat-dot">✓</span>Menu that changes with the season, not a static PDF</li>
+          <li><span class="feat-dot">✓</span>Editorial serif type, warm palette, unmistakably its own brand</li>
+        </ul>
+        <div class="tag-row">
+          <span class="tag">Landing page</span><span class="tag">HTML / CSS</span><span class="tag">Reservation flow</span>
+        </div>
+      </div>
+      <div class="work-visual">
+        <div class="frame fe-frame">
+          <div class="frame-bar"><i></i><i></i><i></i><span class="frame-url">figember.com</span></div>
+          <div class="fe-body">
+            <div class="fe-nav">
+              <span class="fe-logo">FIG &amp; EMBER</span>
+              <div class="fe-nav-links"><span>Menu</span><span>Wine</span><span>Reserve</span></div>
+            </div>
+            <div class="fe-hero">Seasonal plates,<br><em>coastal wine.</em></div>
+            <div class="fe-sub">Dinner from 6pm · Thursday – Sunday</div>
+            <div class="fe-book">
+              <div>2 guests</div><div>Fri 12</div><div>19:30</div><div>Reserve</div>
+            </div>
+            <div class="fe-dishes">
+              <div class="fe-dish" style="background:#7a4a2e;">Small plates</div>
+              <div class="fe-dish" style="background:#5c6244;">Garden</div>
+              <div class="fe-dish" style="background:#933622;">Fire grill</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MERIDIAN — concept -->
+    <div class="work-row">
+      <div class="work-text">
+        <div class="work-meta">
+          <span class="work-chip concept">Concept</span>
+          <span class="work-chip">E-commerce</span>
+        </div>
+        <h3 class="work-name">Meridian Roasters</h3>
+        <p class="work-desc">A specialty coffee roaster selling online. Clean shop, honest sourcing notes and a subscription that quietly turns a one-off buyer into monthly recurring revenue.</p>
+        <ul class="work-features">
+          <li><span class="feat-dot">✓</span>Product cards with origin, roast and tasting notes up front</li>
+          <li><span class="feat-dot">✓</span>Subscribe &amp; save — recurring orders in two taps</li>
+          <li><span class="feat-dot">✓</span>Deep-green / kraft palette that feels crafted, not corporate</li>
+        </ul>
+        <div class="tag-row">
+          <span class="tag">E-commerce</span><span class="tag">Cart + checkout</span><span class="tag">Subscriptions</span>
+        </div>
+      </div>
+      <div class="work-visual">
+        <div class="frame mr-frame">
+          <div class="frame-bar"><i></i><i></i><i></i><span class="frame-url">meridianroasters.co</span></div>
+          <div class="mr-body">
+            <div class="mr-nav">
+              <span class="mr-logo">MERIDIAN</span>
+              <div class="mr-nav-links"><span>Shop</span><span>Subscribe</span><span>Cart (2)</span></div>
+            </div>
+            <div class="mr-hero">Coffee, roasted<br>to order.</div>
+            <div class="mr-grid">
+              <div class="mr-prod">
+                <div class="mr-swatch" style="background:#c98a3f;"></div>
+                <div class="n">Ethiopia Guji</div>
+                <div class="t">Light · Floral</div>
+                <div class="foot"><span class="p">€14</span><span class="mr-add">Add</span></div>
+              </div>
+              <div class="mr-prod">
+                <div class="mr-swatch" style="background:#7a4a2b;"></div>
+                <div class="n">Colombia Huila</div>
+                <div class="t">Medium · Cocoa</div>
+                <div class="foot"><span class="p">€13</span><span class="mr-add">Add</span></div>
+              </div>
+            </div>
+            <div class="mr-sub">Subscribe &amp; save 15% — pause anytime</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STUDIO FORM — concept -->
+    <div class="work-row reverse">
+      <div class="work-text">
+        <div class="work-meta">
+          <span class="work-chip concept">Concept</span>
+          <span class="work-chip">Booking app</span>
+        </div>
+        <h3 class="work-name">Studio Form</h3>
+        <p class="work-desc">A boutique movement studio. A calm, minimal booking app where members see the week and grab a spot in one tap — no clunky third-party widget.</p>
+        <ul class="work-features">
+          <li><span class="feat-dot">✓</span>Whole week at a glance, live spots-left counter</li>
+          <li><span class="feat-dot">✓</span>One-tap booking and waitlist, no account friction</li>
+          <li><span class="feat-dot">✓</span>Quiet, near-monochrome design — the opposite of OASIS on purpose</li>
+        </ul>
+        <div class="tag-row">
+          <span class="tag">Web app</span><span class="tag">Scheduling</span><span class="tag">Mobile-first</span>
+        </div>
+      </div>
+      <div class="work-visual">
+        <div class="phone sf-wrap">
+          <div class="phone-screen sf-screen">
+            <div class="phone-notch sf-notch"><i></i></div>
+            <div class="sf-body">
+              <div class="sf-top">
+                <span class="sf-logo">Studio Form</span>
+                <span class="sf-dot"></span>
+              </div>
+              <div class="sf-label">This week</div>
+              <div class="sf-class">
+                <span class="sf-time">07:00</span>
+                <span class="sf-info"><span class="n">Reformer Flow</span><br><span class="s">Mon · 3 spots left</span></span>
+                <span class="sf-book">Book</span>
+              </div>
+              <div class="sf-class">
+                <span class="sf-time">09:30</span>
+                <span class="sf-info"><span class="n">Mat Pilates</span><br><span class="s">Tue · open</span></span>
+                <span class="sf-book">Book</span>
+              </div>
+              <div class="sf-class">
+                <span class="sf-time">18:00</span>
+                <span class="sf-info"><span class="n">Slow Flow</span><br><span class="s">Wed · waitlist</span></span>
+                <span class="sf-book soft">Join</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="services">
+  <div class="container">
+    <div class="section-head">
+      <span class="sec-label">Rates</span>
+      <h2>What it costs</h2>
+      <p>Fixed starting price, fixed scope. You always know what you're paying for.</p>
+    </div>
+    <div class="rate-list">
+      <div class="rate-row">
+        <div class="rate-name">Landing page</div>
+        <div class="rate-desc">A focused single page designed to convert. Competitor research included.</div>
+        <div class="rate-price"><b>From €150</b><span>2–5 days</span></div>
+      </div>
+      <div class="rate-row">
+        <div class="rate-name">Multi-page site</div>
+        <div class="rate-desc">Corporate or portfolio site, full navigation, bespoke design — zero templates.</div>
+        <div class="rate-price"><b>From €400</b><span>1–2 weeks</span></div>
+      </div>
+      <div class="rate-row">
+        <div class="rate-name">Telegram Mini App</div>
+        <div class="rate-desc">Bookings, loyalty programmes, catalogues — lives where your customers already are.</div>
+        <div class="rate-price"><b>From €300</b><span>1–2 weeks</span></div>
+      </div>
+      <div class="rate-row">
+        <div class="rate-name">Web application</div>
+        <div class="rate-desc">Custom product with database, accounts, integrations and admin panel.</div>
+        <div class="rate-price"><b>From €900</b><span>from 2 weeks</span></div>
+      </div>
+    </div>
+    <p class="rate-note">Starting prices for a single-language, no-frills version. Extra languages, integrations (payments, CRM, booking systems) and content/copywriting are scoped and quoted separately.</p>
+  </div>
+</section>
+
+<section id="process">
+  <div class="container">
+    <div class="section-head">
+      <span class="sec-label">How I work</span>
+      <h2>Three steps from idea to live</h2>
+    </div>
+    <div class="process-list">
+      <div class="process-row">
+        <div class="step-num">01</div>
+        <div>
+          <div class="step-title">Research</div>
+          <div class="step-desc">Before any code: your niche, your competitors, current design trends. I pick one strong direction that fits your business — not a template from a gallery.</div>
+        </div>
+      </div>
+      <div class="process-row">
+        <div class="step-num">02</div>
+        <div>
+          <div class="step-title">Design &amp; build</div>
+          <div class="step-desc">You approve the concept, I build the full product. No skeletons, no "fill this in yourself" — working in the browser, exactly as agreed.</div>
+        </div>
+      </div>
+      <div class="process-row">
+        <div class="step-num">03</div>
+        <div>
+          <div class="step-title">Ship &amp; hand over</div>
+          <div class="step-desc">Live deployment included. Three rounds of revisions in the price. Hosted, tested, handed over — ready for your first real visitors.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <span class="sec-label">Get in touch</span>
+    <h2 class="contact-title">Let's build something<br><span class="hl">people actually use</span></h2>
+    <p class="contact-sub">Tell me what you need — I'll reply within a few hours with a clear scope and rough timeline.</p>
+    <div class="contact-links">
+      <a href="mailto:domkivivan@gmail.com" class="contact-link">domkivivan@gmail.com</a>
+      <a href="https://t.me/domkivivan" class="contact-link">Telegram</a>
+    </div>
+    <p class="contact-langs">EN <span class="lang-divider">·</span> UA <span class="lang-divider">·</span> RU</p>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-logo">Ivan.</span>
+  <span class="footer-copy">© 2026 · Web Developer &amp; Creative Director · Netherlands</span>
+</footer>
+
+<script type="module">
+  import { animate } from "https://esm.sh/motion";
+
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* nav shadow on scroll */
+  const nav = document.querySelector('nav');
+  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 10);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  if (!reduced) {
+    /* scroll reveal — CSS-transition based (robust, no rAF-stuck risk) */
+    const groups = [
+      ['.section-head'],
+      ['.edge-item'],
+      ['.work-row .work-text', '.work-row .work-visual'],
+      ['.rate-row'],
+      ['.process-row'],
+      ['#contact .sec-label', '.contact-title', '.contact-sub', '.contact-links', '.contact-langs'],
+    ];
+    const revealEls = [];
+    document.querySelectorAll(groups.flat().join(',')).forEach((el) => {
+      el.classList.add('reveal-init');
+      revealEls.push(el);
+    });
+    /* per-parent stagger for tight groups */
+    document.querySelectorAll('.edge-row, .rate-list, .process-list').forEach((parent) => {
+      [...parent.children].forEach((child, i) => {
+        const t = child.matches('.reveal-init') ? child : child.querySelector('.reveal-init');
+        if (t) t.style.transitionDelay = (i * 0.08) + 's';
+      });
+    });
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add('reveal-in');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.14, rootMargin: '0px 0px -8% 0px' });
+    revealEls.forEach((el) => io.observe(el));
+
+    /* mockup float + cursor 3D tilt */
+    document.querySelectorAll('.work-visual').forEach((vis) => {
+      const card = vis.querySelector('.phone, .frame');
+      if (!card) return;
+      vis.classList.add('float-anim');
+      vis.addEventListener('pointermove', (e) => {
+        const r = vis.getBoundingClientRect();
+        const px = (e.clientX - r.left) / r.width - 0.5;
+        const py = (e.clientY - r.top) / r.height - 0.5;
+        animate(card, { rotateY: px * 11, rotateX: -py * 11 }, { duration: 0.4, easing: 'ease-out' });
+      });
+      vis.addEventListener('pointerleave', () => {
+        animate(card, { rotateY: 0, rotateX: 0 }, { duration: 0.6, easing: [0.22, 1, 0.36, 1] });
+      });
+    });
+
+    /* magnetic CTA */
+    const btn = document.getElementById('magnet-btn');
+    if (btn) {
+      btn.addEventListener('mousemove', (e) => {
+        const r = btn.getBoundingClientRect();
+        const x = (e.clientX - r.left - r.width / 2) * 0.25;
+        const y = (e.clientY - r.top - r.height / 2) * 0.5;
+        animate(btn, { x, y }, { duration: 0.25, easing: 'ease-out' });
+      });
+      btn.addEventListener('mouseleave', () => {
+        animate(btn, { x: 0, y: 0 }, { duration: 0.4, easing: [0.22, 1, 0.36, 1] });
+      });
+    }
+  }
+</script>
+
+</body>
+</html>
