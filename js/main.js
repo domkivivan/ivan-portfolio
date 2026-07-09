@@ -91,6 +91,15 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
+  /* Cursor spotlight on service cards */
+  document.querySelectorAll('.service').forEach(function (card) {
+    card.addEventListener('pointermove', function (e) {
+      const r = card.getBoundingClientRect();
+      card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    }, { passive: true });
+  });
+
   /* Floating pill + identity strip appear after entry */
   setTimeout(function () {
     document.getElementById('tg-pill').classList.add('is-in');

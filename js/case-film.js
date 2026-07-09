@@ -52,11 +52,11 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
-  /* phone slowly counter-rotates through the film */
-  gsap.fromTo('.phone__frame',
-    { rotateY: -18, rotateX: 5 },
+  /* the hand drifts up slightly through the film — alive, not static */
+  gsap.fromTo('.hand',
+    { y: 40, rotate: -1.5 },
     {
-      rotateY: 14, rotateX: -3, ease: 'none',
+      y: -40, rotate: 1.5, ease: 'none',
       scrollTrigger: {
         trigger: film,
         start: 'top top',

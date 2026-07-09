@@ -34,6 +34,13 @@ body {
 }
 
 ::selection { background: var(--accent); color: #050505; }
+
+/* dark scrollbar — the strip should belong to the design */
+html { scrollbar-color: #26262a var(--bg); scrollbar-width: thin; }
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: #1e1e22; border-radius: 5px; border: 2px solid var(--bg); }
+::-webkit-scrollbar-thumb:hover { background: #34343a; }
 em { font-style: normal; color: var(--accent); }
 .mono {
   font-family: var(--font-mono);
@@ -201,26 +208,35 @@ html:not(.js) #entry { display: none; }
   gap: clamp(2rem, 6vw, 6rem);
   align-items: center;
 }
-.phone { display: flex; justify-content: center; perspective: 1200px; }
-.phone__frame {
+/* hand-held iPhone: real photo, screen area replaced with live screenshots.
+   Green-screen rect measured in the source image (1080×1920): x 386–708, y 512–1178 */
+.hand {
   position: relative;
-  width: min(320px, 72vw);
-  aspect-ratio: 390 / 844;
-  border-radius: 2.6rem;
-  padding: 10px;
-  background: #101012;
-  border: 1px solid var(--hairline);
-  box-shadow:
-    inset 0 1px 1px rgba(255, 255, 255, 0.12),
-    0 40px 80px -30px rgba(0, 0, 0, 0.8);
-  transform: rotateY(-14deg) rotateX(4deg);
-  transform-style: preserve-3d;
+  width: min(520px, 88vw);
+  margin: 0 auto;
+  aspect-ratio: 1080 / 1920;
+  max-height: 92vh;
+}
+.hand__img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: contain;
+  /* blend the photo's own black into the page bg */
+  -webkit-mask-image: radial-gradient(ellipse 62% 55% at 50% 48%, #000 52%, transparent 76%);
+  mask-image: radial-gradient(ellipse 62% 55% at 50% 48%, #000 52%, transparent 76%);
+}
+.hand__screen {
+  position: absolute;
+  left: 35.5%; top: 26.3%;
+  width: 30.3%; height: 35.4%;
+  border-radius: 8% / 3.9%;
+  overflow: hidden;
+  background: #000;
 }
 .phone__screen {
-  position: absolute; inset: 10px;
-  width: calc(100% - 20px); height: calc(100% - 20px);
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
   object-fit: cover; object-position: top;
-  border-radius: 2rem;
   opacity: 0;
   transition: opacity 0.5s var(--ease);
 }
@@ -367,12 +383,25 @@ html:not(.js) #entry { display: none; }
   max-width: 1200px;
 }
 .service {
+  position: relative;
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid var(--hairline-soft);
   border-radius: var(--radius);
   padding: 2.2rem 2rem;
+  overflow: hidden;
   transition: transform 0.7s var(--ease), border-color 0.7s var(--ease), background 0.7s var(--ease);
 }
+/* cursor spotlight */
+.service::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(320px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(180, 230, 69, 0.08), transparent 65%);
+  opacity: 0;
+  transition: opacity 0.5s var(--ease);
+  pointer-events: none;
+}
+.service:hover::before { opacity: 1; }
 .service:hover {
   transform: translateY(-4px);
   border-color: rgba(180, 230, 69, 0.35);
@@ -415,7 +444,27 @@ html:not(.js) #entry { display: none; }
 .contact__actions { display: flex; align-items: center; gap: 2rem; flex-wrap: wrap; }
 .contact__mail { transition: color 0.5s var(--ease); }
 .contact__mail:hover { color: var(--accent); }
-.contact__legal { margin-top: 5rem; }
+
+/* ── Footer wordmark ───────────────────────────── */
+#footer {
+  padding: 0 var(--pad-x) 1.5rem;
+  overflow: hidden;
+  line-height: 0.9;
+}
+.footer__mark {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(4rem, 15.5vw, 15rem);
+  letter-spacing: -0.02em;
+  text-align: center;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.16);
+  user-select: none;
+  transition: color 1s var(--ease);
+}
+.footer__mark:hover { color: rgba(180, 230, 69, 0.9); -webkit-text-stroke: 1px transparent; }
+.footer__mark sup { font-size: 0.3em; }
 
 /* ── Reveal helper (scroll entry) ──────────────── */
 .reveal { opacity: 0; transform: translateY(40px); filter: blur(6px); }
@@ -423,7 +472,7 @@ html:not(.js) #entry { display: none; }
 /* ── Mobile ────────────────────────────────────── */
 @media (max-width: 768px) {
   .case__stage { grid-template-columns: 1fr; gap: 2.5rem; }
-  .phone__frame { transform: none; }
+  .hand { width: min(400px, 92vw); }
   .case__captions { min-height: 0; }
   .case__caption { position: static; opacity: 1; transform: none; margin-bottom: 2rem; }
   .services__grid { grid-template-columns: 1fr; }
