@@ -54,9 +54,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
   /* the hand drifts up slightly through the film — alive, not static */
   gsap.fromTo('.hand',
-    { y: 40, rotate: -1.5 },
+    { y: 40 },
     {
-      y: -40, rotate: 1.5, ease: 'none',
+      y: -40, ease: 'none',
       scrollTrigger: {
         trigger: film,
         start: 'top top',

@@ -210,12 +210,13 @@ html:not(.js) #entry { display: none; }
 }
 /* hand-held iPhone: real photo, screen area replaced with live screenshots.
    Green-screen rect measured in the source image (1080×1920): x 386–708, y 512–1178 */
+/* width also capped by height (51vh ≈ 92vh × 1080/1920) so the box NEVER
+   letterboxes the photo — the % screen overlay depends on exact aspect */
 .hand {
   position: relative;
-  width: min(520px, 88vw);
+  width: min(520px, 88vw, 51vh);
   margin: 0 auto;
   aspect-ratio: 1080 / 1920;
-  max-height: 92vh;
 }
 .hand__img {
   position: absolute; inset: 0;
@@ -472,7 +473,7 @@ html:not(.js) #entry { display: none; }
 /* ── Mobile ────────────────────────────────────── */
 @media (max-width: 768px) {
   .case__stage { grid-template-columns: 1fr; gap: 2.5rem; }
-  .hand { width: min(400px, 92vw); }
+  .hand { width: min(400px, 92vw, 51vh); }
   .case__captions { min-height: 0; }
   .case__caption { position: static; opacity: 1; transform: none; margin-bottom: 2rem; }
   .services__grid { grid-template-columns: 1fr; }
