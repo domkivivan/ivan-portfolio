@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>DOMKIV® — Independent Web Studio</title>
+<meta name="description" content="Websites that sell before you say a word. Design, code and launch — turnkey, in days. Netherlands-based independent web studio.">
+<meta property="og:title" content="DOMKIV® — Independent Web Studio">
+<meta property="og:description" content="Websites that sell before you say a word. This page is the proof.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23050505'/%3E%3Ctext x='16' y='22' font-family='Arial' font-size='16' font-weight='700' fill='%23B4E645' text-anchor='middle'%3ED%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://api.fontshare.com">
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+<!-- Entry overlay: plays once, ~1s, then reveals hero -->
+<div id="entry" aria-hidden="true">
+  <div class="entry__mark">DOMKIV<sup>®</sup></div>
+</div>
+
+<!-- Persistent Telegram CTA -->
+<a id="tg-pill" href="https://t.me/ivan_webdeveloper" target="_blank" rel="noopener"
+   aria-label="Message on Telegram">
+  <span class="tg-pill__dot" aria-hidden="true"></span>
+  <span class="tg-pill__label">Message me</span>
+  <span class="tg-pill__icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M21.5 4.5 2.8 11.7c-.8.3-.8 1.4.1 1.7l4.6 1.5 1.7 5.2c.3.8 1.3 1 1.9.4l2.6-2.5 4.8 3.5c.7.5 1.6.1 1.8-.7l3-14.6c.2-1-.8-1.8-1.8-1.7z"/>
+    </svg>
+  </span>
+</a>
+
+<!-- Identity strip -->
+<header id="identity">
+  <span class="identity__mark">DOMKIV<sup>®</sup></span>
+  <span class="identity__meta mono">independent web studio — NL</span>
+</header>
+
+<main>
+
+  <!-- 01 · HERO -->
+  <section id="hero">
+    <canvas id="hero-canvas" aria-hidden="true"></canvas>
+    <div class="hero__inner">
+      <h1 class="hero__title">
+        <span class="hero__line"><span class="hero__word">Websites</span></span>
+        <span class="hero__line"><span class="hero__word">that <em>sell</em></span></span>
+        <span class="hero__line"><span class="hero__word">before you</span></span>
+        <span class="hero__line"><span class="hero__word">say a word.</span></span>
+      </h1>
+      <p class="hero__sub">Design, code and launch — turnkey, in days.<br>This page is the proof.</p>
+    </div>
+  </section>
+
+  <!-- 02 · MANIFESTO -->
+  <section id="manifesto">
+    <p class="manifesto__lead">Most portfolios show screenshots of old work.</p>
+    <h2 class="manifesto__line">This site <em>is</em> the portfolio.</h2>
+    <p class="manifesto__tail">Everything you're scrolling through — the motion, the code, the detail —
+    was built by the same hands that will build yours.</p>
+  </section>
+
+  <!-- 03 · CASE FILM: OASIS -->
+  <section id="case-oasis">
+    <div class="case__intro">
+      <span class="case__kicker mono">Case — live in production</span>
+      <h2 class="case__title">OASIS Lounge</h2>
+      <p class="case__desc">A premium lounge in Tbilisi needed more than a website:
+      table booking, loyalty, live guest chat and staff tools — one system, in guests' pockets.</p>
+    </div>
+
+    <div class="case__film" id="case-film">
+      <div class="case__stage">
+        <figure class="phone" id="phone">
+          <div class="phone__frame">
+            <img class="phone__screen is-active" src="assets/oasis/oasis-home.png" alt="OASIS guest app — home screen with loyalty card" data-step="0">
+            <img class="phone__screen" src="assets/oasis/oasis-booking.png" alt="OASIS guest app — booking flow" data-step="1">
+            <img class="phone__screen" src="assets/oasis/oasis-tables.png" alt="OASIS guest app — interactive table map" data-step="2">
+            <img class="phone__screen" src="assets/oasis/oasis-loyalty.png" alt="OASIS guest app — five-tier loyalty program" data-step="3">
+            <img class="phone__screen" src="assets/oasis/oasis-profile.png" alt="OASIS guest app — guest profile" data-step="4">
+          </div>
+        </figure>
+        <div class="case__captions">
+          <div class="case__caption" data-step="0">
+            <h3>A Telegram Mini App — no install, no signup</h3>
+            <p>Guests open it straight from Telegram. Loyalty card, promos and news on the first screen.</p>
+          </div>
+          <div class="case__caption" data-step="1">
+            <h3>Booking in three taps</h3>
+            <p>Date, guests, table. Working-hours validation and double-booking protection built in.</p>
+          </div>
+          <div class="case__caption" data-step="2">
+            <h3>A live map of the floor</h3>
+            <p>15 real tables — main hall, VIP terrace, PS zones, bar. Free, taken or yours.</p>
+          </div>
+          <div class="case__caption" data-step="3">
+            <h3>Loyalty that brings guests back</h3>
+            <p>Five tiers, Bronze to VIP. Points from every bill, rewards catalog, full history.</p>
+          </div>
+          <div class="case__caption" data-step="4">
+            <h3>Plus a full staff panel</h3>
+            <p>Bookings lifecycle, table statuses, guest chat, content publishing — realtime over WebSockets.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="case__facts">
+      <div class="fact"><span class="fact__num mono" data-count="3">0</span><span class="fact__label">apps in one system — guest, staff, promo</span></div>
+      <div class="fact"><span class="fact__num mono" data-count="50" data-suffix="+">0</span><span class="fact__label">REST API endpoints</span></div>
+      <div class="fact"><span class="fact__num mono" data-count="5">0</span><span class="fact__label">loyalty tiers, Bronze → VIP</span></div>
+      <div class="fact"><span class="fact__num mono" data-text="live">—</span><span class="fact__label">realtime chat &amp; table statuses</span></div>
+    </div>
+
+    <div class="case__cta">
+      <a class="btn" href="https://oasislounge.org" target="_blank" rel="noopener">
+        <span>Open the live product</span>
+        <span class="btn__icon" aria-hidden="true">↗</span>
+      </a>
+      <span class="case__cta-note mono">oasislounge.org — in production</span>
+    </div>
+
+    <!-- unhide after owner approves quote -->
+    <blockquote class="case__quote" hidden>
+      <p></p>
+      <cite>— Owner, OASIS Lounge, Tbilisi</cite>
+    </blockquote>
+  </section>
+
+  <!-- 04 · LIVE WIDGET -->
+  <section id="live-widget">
+    <div class="widget__head">
+      <span class="widget__kicker mono">Don't take my word for it</span>
+      <h2 class="widget__title">Touch the real thing</h2>
+      <p class="widget__desc">A working slice of the OASIS booking UI, running right here. Pick a free table.</p>
+    </div>
+    <div class="widget__shell">
+      <div class="widget__core" id="table-widget">
+        <!-- rendered by js/table-widget.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 · SERVICES -->
+  <section id="services">
+    <div class="services__head">
+      <span class="services__kicker mono">What DOMKIV ships</span>
+      <h2 class="services__title">Turnkey. From idea to live product.</h2>
+    </div>
+    <div class="services__grid">
+      <article class="service">
+        <h3 class="service__name">Landing page</h3>
+        <p class="service__meta mono">from €600 · 2–5 days</p>
+        <p class="service__desc">One page engineered around a single action — call, order, book. Niche research included.</p>
+      </article>
+      <article class="service">
+        <h3 class="service__name">Multi-page site</h3>
+        <p class="service__meta mono">from €1,200 · 1–2 weeks</p>
+        <p class="service__desc">Full company site with structure that guides visitors to contact — not a brochure.</p>
+      </article>
+      <article class="service">
+        <h3 class="service__name">Telegram Mini App</h3>
+        <p class="service__meta mono">from €950 · 1–2 weeks</p>
+        <p class="service__desc">Your service inside Telegram: bookings, loyalty, orders. Like the one above — in production.</p>
+      </article>
+      <article class="service">
+        <h3 class="service__name">Web application</h3>
+        <p class="service__meta mono">from €2,400 · 3+ weeks</p>
+        <p class="service__desc">Dashboards, portals, internal tools. Backend, database, realtime — the whole machine.</p>
+      </article>
+    </div>
+    <p class="services__note">Design under your brand — researched against your niche and competitors, never a template.
+    Three revision rounds included. 50% upfront, 50% on delivery.</p>
+  </section>
+
+  <!-- 06 · PROCESS -->
+  <section id="process">
+    <h2 class="process__title">Three steps, no drift</h2>
+    <ol class="process__steps">
+      <li class="step">
+        <span class="step__num mono">01</span>
+        <h3 class="step__name">Niche research</h3>
+        <p class="step__desc">Your market, competitors and design direction — before a single pixel.</p>
+      </li>
+      <li class="step">
+        <span class="step__num mono">02</span>
+        <h3 class="step__name">Concept</h3>
+        <p class="step__desc">One strong visual direction with reasoning. You approve it before the build starts.</p>
+      </li>
+      <li class="step">
+        <span class="step__num mono">03</span>
+        <h3 class="step__name">Turnkey production</h3>
+        <p class="step__desc">Design, code, deploy. You receive a live product — not files to figure out.</p>
+      </li>
+    </ol>
+  </section>
+
+  <!-- 07 · CONTACT / OFFER -->
+  <section id="contact">
+    <h2 class="contact__title">Tell me about your business.</h2>
+    <p class="contact__offer">Message me on Telegram — within 24 hours you'll get a concrete idea
+    for your site. Free, and it's yours either way.</p>
+    <div class="contact__actions">
+      <a class="btn btn--accent" href="https://t.me/ivan_webdeveloper" target="_blank" rel="noopener">
+        <span>@ivan_webdeveloper</span>
+        <span class="btn__icon" aria-hidden="true">↗</span>
+      </a>
+      <a class="contact__mail mono" href="mailto:domkivivan@gmail.com">domkivivan@gmail.com</a>
+    </div>
+    <p class="contact__legal mono">DOMKIV® studio — Netherlands (ZZP) · proper invoices · EN / UA / RU</p>
+  </section>
+
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js" defer></script>
+<script src="js/hero-shader.js" defer></script>
+<script src="js/case-film.js" defer></script>
+<script src="js/table-widget.js" defer></script>
+<script src="js/main.js" defer></script>
+</body>
+</html>
