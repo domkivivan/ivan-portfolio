@@ -15,6 +15,11 @@ window.DK = (function () {
 document.addEventListener('DOMContentLoaded', function () {
   const { reducedMotion } = window.DK;
 
+  /* CDN failure: show everything, skip motion */
+  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+    document.documentElement.classList.remove('js');
+    return;
+  }
   gsap.registerPlugin(ScrollTrigger);
 
   /* Lenis smooth scroll (skip when reduced motion) */

@@ -2,6 +2,7 @@
 
 document.addEventListener('DOMContentLoaded', function () {
   const { isMobile, reducedMotion } = window.DK;
+  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
 
   const screens = gsap.utils.toArray('.phone__screen');
   const captions = gsap.utils.toArray('.case__caption');

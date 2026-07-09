@@ -12,6 +12,7 @@ precision highp float;
 uniform float u_time;
 uniform vec2  u_res;
 uniform float u_oct;
+uniform vec2  u_mouse;
 
 float hash(vec2 p) {
   return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453123);
@@ -36,6 +37,8 @@ float fbm(vec2 p) {
 void main() {
   vec2 uv = (gl_FragCoord.xy - 0.5 * u_res) / min(u_res.x, u_res.y);
   float t = u_time * 0.045;
+  /* pointer gently bends the field */
+  uv += u_mouse * 0.12;
 
   vec2 q = vec2(fbm(uv * 1.4 + t), fbm(uv * 1.4 + vec2(1.7, 4.6) - t * 0.6));
   vec2 r = vec2(fbm(uv * 1.4 + 2.2 * q + vec2(8.3, 2.8) + t * 0.8),
@@ -108,7 +111,17 @@ void main() {
     const uTime = gl.getUniformLocation(prog, 'u_time');
     const uRes = gl.getUniformLocation(prog, 'u_res');
     const uOct = gl.getUniformLocation(prog, 'u_oct');
+    const uMouse = gl.getUniformLocation(prog, 'u_mouse');
     gl.uniform1f(uOct, isMobile ? 3.0 : 5.0);
+
+    /* lerped pointer → shader field bend */
+    let mx = 0, my = 0, tx = 0, ty = 0;
+    if (!isMobile) {
+      window.addEventListener('pointermove', function (e) {
+        tx = (e.clientX / window.innerWidth - 0.5) * 2;
+        ty = (0.5 - e.clientY / window.innerHeight) * 2;
+      }, { passive: true });
+    }
 
     const dpr = Math.min(window.devicePixelRatio || 1, isMobile ? 1 : 1.5);
     const scale = isMobile ? 0.6 : 0.85; // render below native res: fog forgives it
@@ -132,6 +145,9 @@ void main() {
     const t0 = performance.now();
     (function frame(now) {
       if (visible) {
+        mx += (tx - mx) * 0.04;
+        my += (ty - my) * 0.04;
+        gl.uniform2f(uMouse, mx, my);
         gl.uniform1f(uTime, (now - t0) / 1000);
         gl.drawArrays(gl.TRIANGLES, 0, 3);
       }
@@ -142,6 +158,12 @@ void main() {
   function initEntry() {
     const { reducedMotion } = window.DK;
     const entry = document.getElementById('entry');
+
+    if (typeof gsap === 'undefined') {
+      entry.remove();
+      document.documentElement.classList.remove('js');
+      return;
+    }
 
     if (reducedMotion) {
       entry.remove();
