@@ -190,7 +190,9 @@ body::after {
 }
 .case__desc { color: var(--muted); max-width: 56ch; font-size: clamp(1rem, 1.4vw, 1.2rem); }
 
+.case__film { min-height: 100dvh; display: flex; align-items: center; }
 .case__stage {
+  width: 100%;
   display: grid;
   grid-template-columns: minmax(0, 5fr) minmax(0, 4fr);
   gap: clamp(2rem, 6vw, 6rem);
