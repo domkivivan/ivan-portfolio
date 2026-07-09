@@ -36,12 +36,21 @@
 - [ ] **Step 3: 21st.dev — физический вызов до хендкода** (правило Фазы 2). ToolSearch `select:mcp__15fa54f4...search` → поиск "dark portfolio hero webgl", "pricing cards dark", "process timeline". Найденное — как референс паттернов; код адаптируется под vanilla (не React).
 - [ ] **Step 4: Commit** — `git add assets/ docs/ && git commit -m "assets: real OASIS production screenshots + design tokens"`
 
-**Design Tokens (заполняется в Step 2):**
+**Design Tokens (зафиксировано 2026-07-09, Step 2):**
 ```
---bg: #0a0a0b (примерно; уточнить)
---accent: [выбрать: электрик-лайм / электрик-синий / кислотный циан]
---text: near-white
-Fonts: [display] + [grotesk]
+Vibe: Ethereal Glass (OLED-чёрный, glass-карты, hairline-бордеры white/10)
+--bg: #050505            (OLED black, не #000)
+--surface: #0d0d0f       (карты)
+--text: #f4f4f2          (near-white)
+--text-muted: #8a8a8e
+--accent: #B4E645        (Volt Lime — один акцент, sat <80%)
+--hairline: rgba(255,255,255,0.10)
+Fonts: Clash Display (display, Fontshare) + Satoshi (body, Fontshare)
+       + JetBrains Mono (метаданные/цифры, Google Fonts)
+Радиусы: 2rem внешний / concentric внутренний (double-bezel)
+Easing: cubic-bezier(0.32,0.72,0,1), длительности 0.6–1.2s
+Запреты: Inter/Roboto, чистый чёрный, неон-глоу, 3 равные колонки,
+  центрированный generic-hero, "Scroll to explore", эмодзи, AI-клише в копи
 ```
 
 ### Task 2: Скелет проекта
