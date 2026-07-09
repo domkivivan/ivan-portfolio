@@ -428,6 +428,7 @@ body::after {
   .step__desc { grid-column: 2; }
   .tg-pill__label { display: none; }
   #tg-pill { padding-left: 0.8rem; }
+  .identity__meta { display: none; }
 }
 
 /* ── Reduced motion ────────────────────────────── */
