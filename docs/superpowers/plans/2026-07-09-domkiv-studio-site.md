@@ -57,7 +57,7 @@ Easing: cubic-bezier(0.32,0.72,0,1), длительности 0.6–1.2s
 
 **Files:** Create: `index.html`, `css/main.css`, `js/main.js`, `.claude/launch.json`
 
-- [ ] **Step 1: `index.html`** — семантические секции по спеке: `#entry`, `#hero`, `#manifesto`, `#case-oasis`, `#live-widget`, `#services`, `#process`, `#contact`; плавающая Telegram-кнопка `<a href="https://t.me/ivan_webdeveloper">`; CDN в конце body:
+- [ ] **Step 1: `index.html`** — семантические секции по спеке: `#entry`, `#hero`, `#manifesto`, `#case-oasis`, `#live-widget`, `#services`, `#process`, `#contact`; плавающая Telegram-кнопка `<a href="https://t.me/domkiv_studio">`; CDN в конце body:
 ```html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
