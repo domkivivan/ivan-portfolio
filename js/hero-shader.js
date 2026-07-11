@@ -156,6 +156,11 @@ void main() {
   }
 
   function initEntry() {
+    /* Note: this used to also reveal .hero__word / .hero__sub on DOMContentLoaded.
+       That reveal is now owned by js/hero-transform.js, triggered from scroll
+       progress at the cinematic before->after handoff (~65-74%), not on load —
+       the hero starts covered by the "before" mockup frame. This function now
+       only plays the DOMKIV mark splash and the post-hero parallax. */
     const { reducedMotion } = window.DK;
     const entry = document.getElementById('entry');
 
@@ -167,8 +172,6 @@ void main() {
 
     if (reducedMotion) {
       entry.remove();
-      gsap.set('.hero__word', { y: 0 });
-      gsap.set('.hero__sub', { opacity: 1, y: 0 });
       return;
     }
 
@@ -179,14 +182,10 @@ void main() {
       .to(entry, {
         opacity: 0, duration: 0.5, ease: 'power2.inOut',
         onComplete: function () { entry.remove(); }
-      }, '-=0.15')
-      .to('.hero__word', {
-        y: 0, duration: 1.1, stagger: 0.09,
-        ease: 'cubic-bezier(0.32, 0.72, 0, 1)'
-      }, '-=0.35')
-      .to('.hero__sub', { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out' }, '-=0.6');
+      }, '-=0.15');
 
-    /* gentle parallax: title drifts up as hero scrolls away */
+    /* gentle parallax: title drifts up as hero scrolls away (after the
+       cinematic pin releases, well past the handoff) */
     gsap.to('.hero__inner', {
       y: -80, opacity: 0.25, ease: 'none',
       scrollTrigger: { trigger: '#hero', start: 'bottom 90%', end: 'bottom 30%', scrub: true }

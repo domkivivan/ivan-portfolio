@@ -56,6 +56,40 @@
       </h1>
       <p class="hero__sub">Design, code and launch — turnkey, in days.<br>This page is the proof.</p>
     </div>
+
+    <!-- Cinematic transformation scroll: generic SaaS mockup -> this live page -->
+    <div class="hero-before-frame" aria-hidden="true">
+      <div class="hero-before-stage">
+        <div class="hero-before-grade">
+          <img class="hero-before-img" src="assets/hero-transform/hero-before.png" alt="">
+        </div>
+
+        <svg class="hero-before-chrome" viewBox="0 0 1024 576" preserveAspectRatio="xMidYMid slice">
+          <circle cx="270" cy="81" r="4.5" fill="#ff5f57"></circle>
+          <circle cx="286" cy="81" r="4.5" fill="#ffbd2e"></circle>
+          <circle cx="302" cy="81" r="4.5" fill="#28c840"></circle>
+        </svg>
+
+        <svg class="hero-before-shard" viewBox="0 0 1024 576" preserveAspectRatio="xMidYMid slice">
+          <defs>
+            <linearGradient id="heroShardGrad" x1="560" y1="132" x2="750" y2="308" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#5B7FFF"></stop>
+              <stop offset="100%" stop-color="#8B5CF6"></stop>
+            </linearGradient>
+          </defs>
+          <path class="shard-path" d="M660,140 C700,138 730,155 738,190 C746,222 730,250 705,258 C715,285 700,310 668,312 C630,315 598,300 585,270 C560,262 540,240 542,208 C544,175 570,150 605,148 C622,140 642,138 660,140 Z" fill="url(#heroShardGrad)"></path>
+        </svg>
+
+        <svg class="hero-before-cta" viewBox="0 0 1024 576" preserveAspectRatio="xMidYMid slice">
+          <path class="cta-path" d="M295.5,308 L362.5,308 A12.5,12.5 0 0 1 362.5,333 L295.5,333 A12.5,12.5 0 0 1 295.5,308 Z" fill="rgba(13,13,15,0.72)" stroke="rgba(255,255,255,0.10)" stroke-width="1"></path>
+        </svg>
+      </div>
+
+      <div class="hero-sweep hero-sweep--bloom"></div>
+      <div class="hero-sweep hero-sweep--core"></div>
+    </div>
+
+    <div class="hero-flash" aria-hidden="true"></div>
   </section>
 
   <!-- 02 · MANIFESTO -->
@@ -225,7 +259,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js" defer></script>
+<script src="https://unpkg.com/flubber@0.4.2/build/flubber.min.js" defer></script>
 <script src="js/hero-shader.js" defer></script>
+<script src="js/hero-transform.js" defer></script>
 <script src="js/case-film.js" defer></script>
 <script src="js/table-widget.js" defer></script>
 <script src="js/main.js" defer></script>

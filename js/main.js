@@ -100,9 +100,11 @@ document.addEventListener('DOMContentLoaded', function () {
     }, { passive: true });
   });
 
-  /* Floating pill + identity strip appear after entry */
-  setTimeout(function () {
+  /* Floating pill + identity strip: with reduced motion there's no cinematic
+     scroll handoff, so show them right away. Otherwise js/hero-transform.js
+     triggers them at 76% of the hero scroll progress. */
+  if (reducedMotion) {
     document.getElementById('tg-pill').classList.add('is-in');
     document.getElementById('identity').classList.add('is-in');
-  }, reducedMotion ? 0 : 1400);
+  }
 });

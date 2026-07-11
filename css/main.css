@@ -151,6 +151,8 @@ body::after {
     var(--bg);
 }
 .hero__inner { position: relative; z-index: 1; max-width: 1400px; }
+/* hidden until the cinematic before->after handoff reveals it (js/hero-transform.js) */
+.js .hero__inner { opacity: 0; }
 .hero__title {
   font-size: clamp(3rem, 10vw, 8rem);
   font-weight: 600;
@@ -169,6 +171,69 @@ body::after {
 .js .hero__word { transform: translateY(110%); }
 .js .hero__sub { opacity: 0; transform: translateY(16px); }
 html:not(.js) #entry { display: none; }
+
+/* ── Hero cinematic transformation scroll ─────────
+   A generic "before" SaaS mockup camera-pushes, grades and flash-cuts into
+   the live hero above. Only rendered/active when JS + GSAP are alive —
+   without JS the real hero content already ships visible (see .js gating
+   above), so the before-frame must not be able to obscure it. */
+.hero-before-frame { display: none; }
+.js .hero-before-frame {
+  display: block;
+  position: absolute; inset: 0;
+  z-index: 2;
+  overflow: hidden;
+  background: #EFEAE2;
+  pointer-events: none;
+}
+.hero-before-stage {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  will-change: transform;
+}
+.hero-before-grade {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  will-change: filter;
+}
+.hero-before-img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.hero-before-chrome,
+.hero-before-shard,
+.hero-before-cta {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  overflow: visible;
+}
+.hero-before-shard { mix-blend-mode: screen; }
+.hero-before-shard .shard-path,
+.hero-before-cta .cta-path { opacity: 0; }
+
+.hero-sweep {
+  position: absolute; inset: -50% -60%;
+  width: 40vmax; height: 220vmax;
+  background: linear-gradient(90deg,
+    transparent 0%, transparent 42%,
+    rgba(244, 244, 242, 0.30) 47%, #ffffff 50%,
+    rgba(180, 230, 69, 0.85) 53%, transparent 60%, transparent 100%);
+  mix-blend-mode: screen;
+  pointer-events: none;
+  will-change: transform;
+}
+.hero-sweep--core { filter: blur(2px); }
+.hero-sweep--bloom { filter: blur(24px); opacity: 0.5; }
+
+.hero-flash {
+  position: absolute; inset: 0;
+  z-index: 3;
+  background: radial-gradient(circle at 20% 85%, #ffffff 0%, #B4E645 40%, transparent 72%);
+  opacity: 0;
+  pointer-events: none;
+}
 
 /* ── Manifesto ─────────────────────────────────── */
 #manifesto {
